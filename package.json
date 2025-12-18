@@ -1,0 +1,120 @@
+{
+  "name": "solidity-console-remover",
+  "displayName": "Solidity Console Log Remover",
+  "description": "Remove console.log statements from Solidity contracts with ease",
+  "version": "0.1.0",
+  "publisher": "YOUR_PUBLISHER_ID",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fr1jo/solidity-console-remover"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other",
+    "Formatters"
+  ],
+  "keywords": [
+    "solidity",
+    "console",
+    "cleanup",
+    "hardhat"
+  ],
+  "activationEvents": [
+    "onLanguage:solidity"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "solidity-console-remover.removeConsoleLogs",
+        "title": "Remove Console Logs",
+        "category": "Solidity"
+      },
+      {
+        "command": "solidity-console-remover.removeConsoleLogsAndImport",
+        "title": "Remove Console Logs and Import",
+        "category": "Solidity"
+      },
+      {
+        "command": "solidity-console-remover.removeConsoleLogsWorkspace",
+        "title": "Remove Console Logs (Workspace)",
+        "category": "Solidity"
+      },
+      {
+        "command": "solidity-console-remover.removeConsoleLogsAndImportWorkspace",
+        "title": "Remove Console Logs and Import (Workspace)",
+        "category": "Solidity"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceExtname == .sol",
+          "command": "solidity-console-remover.removeConsoleLogs",
+          "group": "1_modification@1"
+        },
+        {
+          "when": "resourceExtname == .sol",
+          "command": "solidity-console-remover.removeConsoleLogsAndImport",
+          "group": "1_modification@2"
+        }
+      ],
+      "explorer/context": [
+        {
+          "when": "explorerResourceIsFolder",
+          "command": "solidity-console-remover.removeConsoleLogsWorkspace",
+          "group": "2_workspace@1"
+        },
+        {
+          "when": "explorerResourceIsFolder",
+          "command": "solidity-console-remover.removeConsoleLogsAndImportWorkspace",
+          "group": "2_workspace@2"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Solidity Console Remover",
+      "properties": {
+        "solidityConsoleRemover.confirmBeforeRemoval": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show confirmation dialog before removing console logs"
+        },
+        "solidityConsoleRemover.preserveEmptyLines": {
+          "type": "boolean",
+          "default": false,
+          "description": "Keep empty lines after console log removal"
+        },
+        "solidityConsoleRemover.showNotifications": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show notification after removal with count"
+        },
+        "solidityConsoleRemover.customPatterns": {
+          "type": "array",
+          "default": [],
+          "description": "Additional regex patterns for custom logging libraries (advanced users)",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.0",
+    "@types/vscode": "^1.75.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.50.0",
+    "typescript": "^5.3.0"
+  }
+}
