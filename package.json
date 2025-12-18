@@ -3,7 +3,7 @@
   "displayName": "Solidity Console Log Remover",
   "description": "Remove console.log statements from Solidity contracts with ease",
   "version": "0.1.0",
-  "publisher": "YOUR_PUBLISHER_ID",
+  "publisher": "frijo",
   "repository": {
     "type": "git",
     "url": "https://github.com/fr1jo/solidity-console-remover"
